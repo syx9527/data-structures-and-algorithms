@@ -7,29 +7,33 @@ class Node:
         self.next = next
 
 
-def create_linklist_head(li: List[int]) -> Node:
+def create_linklist_head(_list: List[int]) -> Node:
     """
     头插法
-    :param li:
+    :param _list:
     :return:
     """
-    head = Node(li[0])
-    for element in li[1:]:
+    if not _list:
+        return Node(None)
+    head = Node(_list[0])
+    for element in _list[1:]:
         node = Node(element)
         node.next = head
         head = node
     return head
 
 
-def create_linklist_tail(li: List[int]) -> Node:
+def create_linklist_tail(_list: List[int]) -> Node:
     """
     尾插法
-    :param li:
+    :param _list:
     :return:
     """
-    head = Node(li[0])
+    if not _list:
+        return Node(None)
+    head = Node(_list[0])
     tail = head
-    for element in li[1:]:
+    for element in _list[1:]:
         node = Node(element)
         tail.next = node
         tail = node
@@ -42,6 +46,6 @@ def print_linklist(lk: Node):
         lk = lk.next
 
 
-li = [1, 2, 3, 4, 5, 6, 7, 8]
-lk = create_linklist_tail(li=li)
+_list = [1, 2, 3, 4, 5, 6, 7, 8]
+lk = create_linklist_tail(_list=_list)
 print_linklist(lk)
