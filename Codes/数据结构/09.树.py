@@ -10,6 +10,7 @@ class Node:
         self.type = type_  # "dir" or "file"
         self.children = []
         self.parent = None
+        # 链式存储
 
     def __repr__(self):
         return self.name
@@ -39,13 +40,25 @@ class FileSystemTree:
     def cd(self, name):
         if name[-1] != "/":
             name += "/"
+        if name == "../":
+            self.now = self.now.parent
+            return
         for child in self.now.children:
             if child.name == name:
                 self.now = child
+                return
         else:
             raise ValueError("invalid dir")
 
 
 tree = FileSystemTree()
+
 tree.mkdir("var")
-print(tree.root.children)
+tree.mkdir("bin")
+tree.mkdir("usr")
+
+tree.cd("bin")
+tree.mkdir("python")
+tree.cd("../")
+
+print(tree.ls())
