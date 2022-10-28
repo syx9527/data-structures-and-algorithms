@@ -32,6 +32,7 @@ class Solution:
         sum_ = sum(nums)
         if sum_ % k != 0:
             return False
+
         nums.sort()
         mual = sum_ // k
         # for i in range(len(nums)):
